@@ -1,27 +1,17 @@
-apply plugin: 'eclipse'
 apply plugin: 'java'
 
 repositories {
-	jcenter()
+	mavenCentral()
 }
 
 dependencies {
-	testCompile 'junit:junit:4.+',
-		'org.hamcrest:hamcrest-core:1.+',
-		'org.hamcrest:hamcrest-library:1.+',
-		'org.mockito:mockito-core:2.+',
-		'org.assertj:assertj-core:3.+'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+	testRuntimeOnly'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+	testImplementation 'org.assertj:assertj-core:3.11.1'
+	testImplementation 'org.hamcrest:hamcrest:2.2'
+	testImplementation'org.mockito:mockito-core:3.3.3'
 }
 
-task buildSrcFolders {
-
-	description 'Builds default source folders'
-
-	doLast {
-		mkdir("src/main/java")
-		mkdir("src/test/java")
-	}
+test {
+	useJUnitPlatform()
 }
-
-tasks.eclipse.dependsOn buildSrcFolders
-

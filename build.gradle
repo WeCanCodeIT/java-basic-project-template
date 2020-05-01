@@ -1,3 +1,4 @@
+apply plugin: 'eclipse'
 apply plugin: 'java'
 
 repositories {
@@ -15,3 +16,14 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+task buildSrcFolders {
+
+	description 'Builds default source folders'
+
+	doLast {
+		mkdir("src/main/java")
+		mkdir("src/test/java")
+	}
+}
+
+tasks.eclipse.dependsOn buildSrcFolders
